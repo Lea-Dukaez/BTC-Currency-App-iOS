@@ -8,17 +8,23 @@
 
 import Foundation
 
+protocol CoinManagerDelegate {
+    func didFailWithError(error: Error)
+    func didUpdateCurrency(currencyRate: String)
+}
+
 struct CoinManager {
     
+    var delegate : CoinManagerDelegate?
+    
     let baseURL = "https://rest.coinapi.io/v1/exchangerate/BTC"
-    
     let secret = Secret()
-    let apiKey = secret.apiKey
-    
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
-    func createURL(currency:String) {
-        let urlString = baseURL+"/\(currency)"
+    
+    func performRequest(currency:String) {
+        let apiKey = secret.apiKey
+        let urlString = baseURL+"/\(currency)"+"?apikey=\(apiKey)"
         fetchData(with: urlString)
     }
     
@@ -27,16 +33,34 @@ struct CoinManager {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, urlResponse, error) in
                 if error != nil {
-                    print(error!)
+                    self.delegate?.didFailWithError(error: error!)
+                    return
                 }
                 if let safeData = data {
-                    print(safeData)
-                    print(urlResponse)
-                    print("got data ! ")
+                    DispatchQueue.main.async {
+                        if let currencyValue = self.ReadJSONData(data: safeData) {
+                            self.delegate?.didUpdateCurrency(currencyRate: currencyValue)
+                        }
+                    }
+                    
                 }
             }
             task.resume()
         }
     }
+    
+    func ReadJSONData(data: Data) -> String? {
+        do {
+            let jsonDecoder = JSONDecoder()
+            let decodedData = try jsonDecoder.decode(CoinData.self, from: data)
+            let rate = String(format: "%.2f", decodedData.rate)
+            return rate
+        } catch {
+            print("JSON Serialization error")
+            return nil
+        }
+    }
 
 }
+
+

@@ -15,6 +15,7 @@
 		DB49AEFD24439C0400B97EA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB49AEFB24439C0400B97EA8 /* LaunchScreen.storyboard */; };
 		DB49AF0A2445ED1D00B97EA8 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49AF092445ED1D00B97EA8 /* CoinManager.swift */; };
 		DB49AF0C2445FF3300B97EA8 /* secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49AF0B2445FF3300B97EA8 /* secret.swift */; };
+		DB49AF0E2446129600B97EA8 /* CoinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB49AF0D2446129600B97EA8 /* CoinData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DB49AEFE24439C0400B97EA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB49AF092445ED1D00B97EA8 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
 		DB49AF0B2445FF3300B97EA8 /* secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secret.swift; sourceTree = "<group>"; };
+		DB49AF0D2446129600B97EA8 /* CoinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +93,9 @@
 		DB49AF0624445C3D00B97EA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DB49AF092445ED1D00B97EA8 /* CoinManager.swift */,
 				DB49AF0B2445FF3300B97EA8 /* secret.swift */,
+				DB49AF092445ED1D00B97EA8 /* CoinManager.swift */,
+				DB49AF0D2446129600B97EA8 /* CoinData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB49AF0E2446129600B97EA8 /* CoinData.swift in Sources */,
 				DB49AF0A2445ED1D00B97EA8 /* CoinManager.swift in Sources */,
 				DB49AEF524439C0100B97EA8 /* ViewController.swift in Sources */,
 				DB49AF0C2445FF3300B97EA8 /* secret.swift in Sources */,
